@@ -16,11 +16,14 @@ Make the posters look like one coherent series. The car may change, but the post
 - the same description block position and spacing below the title
 - the same bottom horizontal rule
 - the same four-cell specification strip width, divider spacing, and vertical position
+- the same vehicle-facing direction across the entire set
 
 ## Car placement rule
 
 The car should be placed within the same hero zone in every poster.
 The visual scale may be adjusted slightly to fit the model, but the vehicle should occupy a similar proportion of the poster and sit on the same ground/reflection system.
+
+For paired or multi-poster sets, use a front three-quarter view with the vehicle nose pointing toward **canvas left** by default. Keep this direction identical in every poster. Do not horizontally mirror an individual member of the series unless the user explicitly requests a different direction for the entire set.
 
 ## Workflow rule
 
@@ -34,3 +37,5 @@ For a pair or set, generate the first final poster and then use it as the layout
 - same bottom spec strip position
 - same whitespace rhythm
 - cars framed consistently
+- every vehicle nose points toward canvas left by default
+- no mirrored or opposite-facing outlier appears in the same series
