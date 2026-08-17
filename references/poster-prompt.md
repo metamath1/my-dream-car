@@ -41,6 +41,7 @@ Negative constraints:
 - tall vertical poster, approximately 9:16
 - hero vehicle centered in the middle/lower-middle area
 - front three-quarter view unless another researched angle is better for identity
+- for a paired or multi-poster set, orient the vehicle so its nose points toward the viewer's left (canvas left), and keep that direction identical across the whole set
 - natural perspective without distorted proportions
 - vehicle large enough that the exact model-specific features are obvious
 - visible front showroom plate reading `{{showroom_plate_text}}`
@@ -93,5 +94,6 @@ If a previous finished poster from the same set is provided, preserve these elem
 - description block placement
 - bottom rule and four-cell spec-strip placement
 - overall whitespace rhythm
+- vehicle-facing direction: front three-quarter, nose toward canvas left
 
-Only the car identity, variant-specific wording, and verified specs should change.
+Do not horizontally mirror one poster relative to another in the same series. Only the car identity, variant-specific wording, and verified specs should change.
