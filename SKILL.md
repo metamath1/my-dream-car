@@ -46,6 +46,7 @@ Optional:
 8. **Front showroom plate is mandatory unless the user explicitly asks to omit it.** The plate text should be the short car name such as `KALOS V`, `BMW 118d`, or `AVANTE`.
 9. **Series consistency matters.** When generating a pair or set of posters, use a fixed poster template and consistent layout anchors so that repeated elements stay in the same positions across the set.
 10. **For paired posters, do not generate the final posters independently from scratch.** Establish one layout anchor first, then generate the matching companion poster using that layout anchor.
+11. **Series vehicle orientation is locked.** For paired or multi-poster sets, use a front three-quarter view with the vehicle nose pointing toward the viewer's left (canvas left) in every poster, unless the user explicitly requests another direction. Do not mirror individual posters within the same series.
 
 ## Required workflow
 
@@ -338,8 +339,9 @@ Across a paired or multi-poster set, keep the following consistent unless the us
 - description block position and spacing
 - bottom rule and four-cell spec-strip position, width, and divider rhythm
 - overall whitespace system
+- hero-car orientation: front three-quarter view with the vehicle nose toward canvas left
 
-Use the first final poster as the **layout anchor** for the remaining posters in the set.
+Use the first final poster as the **layout anchor** for the remaining posters in the set. The facing direction is part of the locked layout and must not flip between posters.
 
 #### Layout consistency gate
 
@@ -348,6 +350,8 @@ Before accepting a paired or multi-poster set, verify:
 - the canvases have the same size and aspect ratio
 - repeated text blocks align to the same visual positions
 - the cars occupy similar visual scale and are centered within the same framing logic
+- every vehicle nose points toward canvas left unless the user explicitly requested another shared direction
+- no poster in the same series is horizontally mirrored relative to the others
 - the bottom spec strip starts and ends at the same positions
 - the pair reads as one series rather than two merely similar posters
 
@@ -374,6 +378,7 @@ The poster fails if:
 - paired variants again become visually almost identical
 - the showroom plate is missing or wrong
 - the posters in a set have visibly different canvas sizes or drifting layout positions for repeated elements
+- a paired or multi-poster set contains mixed vehicle-facing directions or a mirrored outlier
 
 If the final poster regresses on a hard-gate feature, repair from the **validated** anchor.
 
