@@ -23,3 +23,5 @@ Localized errors may be repaired by editing. Identity-critical errors require di
 ## Poster sets
 
 For paired or multi-poster requests, the first accepted poster becomes the layout anchor. Canvas size, typography zones, hero-car framing, whitespace, and the bottom specification strip should remain visually aligned across the set.
+
+Vehicle orientation is part of the series layout lock. Unless the user explicitly requests another direction, every vehicle in the same series should use a front three-quarter view with the nose pointing toward canvas left. Do not mirror individual posters within the same set.
