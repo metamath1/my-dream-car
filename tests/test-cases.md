@@ -84,3 +84,15 @@ Expected behavior:
 - show every vehicle in a front three-quarter view with the nose pointing toward canvas left
 - reject or regenerate any member that faces the opposite direction or appears horizontally mirrored
 - preserve generation-specific exterior identity while keeping the series visually consistent
+
+## Test 8 — series preference checkpoint hard stop
+
+Prompt:
+
+`my-dream-car로 폭스바겐 골프 GTI를 세대별로 한 장씩 포스터로 만들어줘.`
+
+Expected behavior:
+- before the first image, ask only for missing shared preferences that materially affect the series, especially color policy and market basis
+- if a clarification question is asked, stop that response and wait for the user's reply
+- generate zero images in the same response as the question
+- after the user replies, apply the confirmed shared preferences consistently across the series
