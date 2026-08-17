@@ -71,3 +71,16 @@ Expected behavior:
 - produce two posters with the same canvas size and a clearly shared layout template
 - keep title, description block, and spec strip aligned across the pair
 - vary the car and variant-specific details while preserving series consistency
+
+## Test 7 — multi-generation orientation consistency
+
+Prompt:
+
+`my-dream-car로 폭스바겐 골프 GTI 1세대부터 8세대까지 같은 시리즈 포스터로 각각 만들어줘.`
+
+Expected behavior:
+- use one coherent poster template across all generations
+- keep the exact same canvas size and repeated layout positions
+- show every vehicle in a front three-quarter view with the nose pointing toward canvas left
+- reject or regenerate any member that faces the opposite direction or appears horizontally mirrored
+- preserve generation-specific exterior identity while keeping the series visually consistent
