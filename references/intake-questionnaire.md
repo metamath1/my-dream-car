@@ -1,46 +1,81 @@
-# Initial intake questionnaire
+# Initial user-preference checkpoint
 
-Use this when certainty is medium/low or when exact variant fidelity matters.
+Use this before the first image generation when uncertainty or missing user preferences can materially affect accuracy or series consistency.
 
 ## Goal
 
-Reduce uncertainty before expensive research and generation. Ask one short grouped message, not a long interview.
+Get the user's important choices before generation rather than correcting avoidable assumptions afterward.
 
-## Default grouped intake message
+The checkpoint should feel like one short confirmation, not a long interview.
 
-You can adapt this wording naturally:
-
-`To make the car accurately, a few quick checks first:`
-
-- `If you have reference images, please upload them. I will prioritize them.`
-- `If you do not have images, I can verify the car through web/image search and continue.`
-- `If known, please tell me the year / generation / pre-facelift or facelift / trim / market.`
-- `If there is a must-match design detail such as the lamps, grille, rear fender, or wheel design, please tell me.`
-- `If the poster specs should follow a specific market version, please tell me that too.`
-
-## Ask / skip rules
+## Strong trigger conditions
 
 Ask when:
 - generation or facelift ambiguity matters
 - regional-market design differences exist
-- the vehicle is obscure or newly released
-- two sibling variants are requested together
+- the vehicle is obscure, newly released, or difficult to identify precisely
+- two or more sibling variants are requested together
+- a multi-generation or multi-poster series is requested
+- the user has not specified an important series-wide choice such as color policy or market basis
 - a prior failure exists for this model
 - the user explicitly emphasizes accuracy
 
-Skip when:
-- the requested variant is already very specific and unambiguous
-- the user already provided exact reference images and variant info
-- asking again would provide no meaningful accuracy gain
+## Series preference checkpoint
+
+For paired or multi-poster requests, check only the shared choices that are still missing:
+
+- target market / regional specification
+- color policy:
+  - one shared color for all posters
+  - representative color per generation/model
+  - user-specified color(s)
+- reference images available or web/image research authorized
+- must-match exterior details
+- any explicit series-wide presentation preference
+
+Do not ask for choices the user already provided.
+
+## Default grouped message
+
+Adapt naturally. For example:
+
+`Before I generate the series, I want to lock the few choices that affect consistency.`
+
+- `If you have reference images, please upload them; I will prioritize them. Otherwise I can verify each vehicle through web/image search.`
+- `Which market or regional version should I use, if that matters?`
+- `For color, should I use one shared color for the whole series, a representative color for each generation, or colors you specify?`
+- `If there is any must-match exterior detail, please tell me.`
+
+## Hard-stop rule
+
+If any preference or clarification question is asked, **that response ends with the question set**.
+
+Do not:
+- generate any image in the same response
+- generate a shape anchor in the same response
+- continue the generation workflow before the user replies
+- silently choose an unanswered preference and continue
+
+Wait for the next user message.
+
+## Skip rule
+
+Skip this checkpoint when the original request already contains enough information to proceed reliably.
+
+Examples:
+- exact generation/facelift/market already specified
+- user already provided or declined reference images
+- series color policy is already specified
+- no meaningful unresolved preference remains
 
 ## Response handling
 
-- If the user uploads images, treat them as the highest-priority ground truth.
-- If the user answers only some fields, continue with those answers and research the rest.
-- If the user declines to answer and tells you to proceed, continue using best-effort research and record assumptions.
-- Do not force the user to answer all questions.
+- User-provided or user-confirmed images are highest-priority ground truth.
+- If the user answers only some items, continue unless a remaining ambiguity would materially change the result.
+- If the user says `그냥 알아서 진행해줘`, use defensible assumptions and proceed.
+- Do not force the user to answer every optional question.
 
-## Maximum interaction rule
+## Interaction limit
 
-The intake should usually take at most **one grouped question round**.
-A second short follow-up is allowed only if there is still a major unresolved ambiguity that would clearly change the car.
+Usually use only **one grouped checkpoint round**.
+A second short follow-up is allowed only when a remaining ambiguity would clearly change the vehicle identity or the requested series.
