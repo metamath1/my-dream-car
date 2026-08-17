@@ -13,6 +13,7 @@
 - distinguishes local repair from identity-critical regenerate-from-scratch cases
 - verifies poster specifications conservatively
 - keeps paired or multi-poster layouts aligned through a shared layout anchor
+- locks all vehicles in a poster series to the same front three-quarter direction, with the nose toward canvas left by default
 - uses the vehicle's short name on the showroom-style front plate unless the user asks otherwise
 
 ## Package structure
