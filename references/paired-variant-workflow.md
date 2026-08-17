@@ -39,3 +39,7 @@ Example categories:
 After variant A and B have passed their shape-anchor checks, generate the first final poster and use it as the layout anchor for the companion poster. The two final posters should look like they belong to one design system, not two loosely similar layouts.
 
 Check that the title baseline, background word, car placement, and bottom spec strip are aligned across the pair.
+
+## Orientation lock
+
+For the final paired or multi-poster series, use a front three-quarter view with the vehicle nose pointing toward **canvas left**. Apply the same facing direction to every poster. A poster that faces the opposite direction or appears horizontally mirrored is a consistency failure unless the user explicitly requested that variation.
