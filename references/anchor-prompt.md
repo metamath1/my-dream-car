@@ -40,6 +40,7 @@ Negative constraints — do not drift into these mistakes:
 ## Camera and presentation
 
 - front three-quarter view unless another angle better exposes the identity-critical geometry
+- if this anchor belongs to a paired or multi-poster set, place the vehicle nose toward canvas left so all series anchors share the same orientation
 - realistic natural lens, not an exaggerated wide angle
 - neutral light studio or clean neutral background
 - no giant typography
