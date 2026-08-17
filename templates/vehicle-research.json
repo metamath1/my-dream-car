@@ -1,0 +1,86 @@
+{
+  "intake": {
+    "certainty_level": "high|medium|low",
+    "intake_triggered": true,
+    "user_reference_priority": "none|provided|confirmed_ground_truth",
+    "assumptions": []
+  },
+  "vehicle_identity": {
+    "manufacturer": "",
+    "model": "",
+    "generation_or_chassis": "",
+    "facelift_state": "",
+    "year_or_era": "",
+    "trim_or_variant": "",
+    "market": "",
+    "body_style": "",
+    "identity_confidence": "high|medium|low",
+    "ambiguity_notes": ""
+  },
+  "references": [
+    {
+      "file": "",
+      "source_url": "",
+      "source_name": "",
+      "claimed_market": "",
+      "claimed_year_or_era": "",
+      "body_style": "",
+      "view": "",
+      "identity_features_observed": {
+        "headlamp": "",
+        "indicator": "",
+        "grille": "",
+        "bumper": ""
+      },
+      "corroborates_with": [],
+      "status": "accepted|quarantined|rejected",
+      "decision_reason": "",
+      "ground_truth_priority": "primary|secondary|none"
+    }
+  ],
+  "visual_grounding": {
+    "exterior_color": "",
+    "front_fascia": "",
+    "headlights": "",
+    "grille_and_badge": "",
+    "bumper_details": "",
+    "hood_and_fender_lines": "",
+    "side_character_lines": "",
+    "door_and_handle_layout": "",
+    "glasshouse_and_pillars": "",
+    "rear_quarter_and_fender": "",
+    "taillights_and_rear_treatment": "",
+    "wheels_and_stance": "",
+    "other_factory_details": ""
+  },
+  "shape_critical_notes": {
+    "must_match": [],
+    "negative_constraints": [],
+    "known_failure_modes": []
+  },
+  "anchor_validation": {
+    "headlamp_gate": {"status": "pass|fail", "evidence_note": ""},
+    "indicator_gate": {"status": "pass|fail", "evidence_note": ""},
+    "grille_gate": {"status": "pass|fail", "evidence_note": ""},
+    "bumper_gate": {"status": "pass|fail", "evidence_note": ""},
+    "overall_result": "pass|fail"
+  },
+  "verified_specs": [
+    {
+      "label": "",
+      "value": "",
+      "variant_context": "",
+      "source_note": "",
+      "confidence": "high|medium"
+    }
+  ],
+  "poster": {
+    "language": "English",
+    "showroom_plate_text": "",
+    "top_line": "",
+    "background_word": "",
+    "main_title": "",
+    "one_sentence_description": "",
+    "selected_spec_cells": []
+  }
+}
