@@ -18,6 +18,8 @@ Use this internally when the initial Q&A routine is triggered.
 - Preferred spec market:
 - Preferred color:
 - Poster language:
+- Series color policy:
+- Shared series direction/presentation preference:
 - Other notes:
 
 ## Remaining assumptions
