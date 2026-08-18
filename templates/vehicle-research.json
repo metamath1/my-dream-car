@@ -3,7 +3,10 @@
     "certainty_level": "high|medium|low",
     "intake_triggered": true,
     "user_reference_priority": "none|provided|confirmed_ground_truth",
-    "assumptions": []
+    "assumptions": [],
+    "reference_images_answered": false,
+    "exterior_color_answered": false,
+    "series_color_policy": ""
   },
   "vehicle_identity": {
     "manufacturer": "",
@@ -51,7 +54,14 @@
     "rear_quarter_and_fender": "",
     "taillights_and_rear_treatment": "",
     "wheels_and_stance": "",
-    "other_factory_details": ""
+    "other_factory_details": "",
+    "front_fender_volume": "",
+    "front_wheel_arch": "",
+    "door_surface_planes": "",
+    "rocker_and_side_skirt": "",
+    "rear_fender_volume": "",
+    "rear_wheel_arch": "",
+    "c_pillar_and_rear_quarter_window": ""
   },
   "shape_critical_notes": {
     "must_match": [],
@@ -59,11 +69,47 @@
     "known_failure_modes": []
   },
   "anchor_validation": {
-    "headlamp_gate": {"status": "pass|fail", "evidence_note": ""},
-    "indicator_gate": {"status": "pass|fail", "evidence_note": ""},
-    "grille_gate": {"status": "pass|fail", "evidence_note": ""},
-    "bumper_gate": {"status": "pass|fail", "evidence_note": ""},
-    "overall_result": "pass|fail"
+    "headlamp_gate": {
+      "status": "pass|fail",
+      "evidence_note": ""
+    },
+    "indicator_gate": {
+      "status": "pass|fail",
+      "evidence_note": ""
+    },
+    "grille_gate": {
+      "status": "pass|fail",
+      "evidence_note": ""
+    },
+    "bumper_gate": {
+      "status": "pass|fail",
+      "evidence_note": ""
+    },
+    "overall_result": "pass|fail",
+    "front_fender_gate": {
+      "status": "pass|fail|not_applicable",
+      "evidence_note": ""
+    },
+    "front_wheel_arch_gate": {
+      "status": "pass|fail|not_applicable",
+      "evidence_note": ""
+    },
+    "side_surface_gate": {
+      "status": "pass|fail|not_applicable",
+      "evidence_note": ""
+    },
+    "rear_fender_gate": {
+      "status": "pass|fail|not_applicable",
+      "evidence_note": ""
+    },
+    "rear_wheel_arch_gate": {
+      "status": "pass|fail|not_applicable",
+      "evidence_note": ""
+    },
+    "glasshouse_gate": {
+      "status": "pass|fail|not_applicable",
+      "evidence_note": ""
+    }
   },
   "verified_specs": [
     {
@@ -82,5 +128,21 @@
     "main_title": "",
     "one_sentence_description": "",
     "selected_spec_cells": []
+  },
+  "reference_coverage": {
+    "front_or_front_three_quarter": {
+      "status": "present|missing",
+      "reference_files": []
+    },
+    "side_profile": {
+      "status": "present|missing",
+      "reference_files": []
+    },
+    "rear_or_rear_three_quarter": {
+      "status": "present|missing",
+      "reference_files": []
+    },
+    "side_geometry_is_identity_critical": false,
+    "coverage_notes": ""
   }
 }

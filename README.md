@@ -4,12 +4,13 @@
 
 ## Core behavior
 
-- asks a short grouped clarification when important details are uncertain
+- confirms reference-image availability and exterior color before the first image unless already specified
 - prioritizes user-confirmed reference images
 - researches recent, obscure, regional, or facelift-sensitive vehicles actively
 - records and filters reference provenance
 - quarantines conflicting visual references before image generation
-- creates and validates a shape anchor before the final poster when strict grounding is needed
+- creates and validates a multi-angle shape anchor before the final poster when strict grounding is needed
+- treats distinctive fender volume and side-body surface geometry as identity-critical when supported by research
 - distinguishes local repair from identity-critical regenerate-from-scratch cases
 - verifies poster specifications conservatively
 - keeps paired or multi-poster layouts aligned through a shared layout anchor

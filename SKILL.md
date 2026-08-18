@@ -1,6 +1,6 @@
 ---
 name: my-dream-car
-description: Research a user-specified real-world car, reduce uncertainty through a short initial Q&A when needed, ground the exact variant in proven references, validate a shape anchor, then generate a premium vertical automotive poster with strong resistance to generation/facelift drift.
+description: Research a user-specified real-world car, confirm essential user preferences before generation, ground the exact variant in proven multi-angle references, validate both front identity and side-body geometry, then generate a premium vertical automotive poster with strong resistance to generation/facelift and body-surface drift.
 ---
 
 # my-dream-car
@@ -15,6 +15,7 @@ The skill is designed to prevent the following failure modes while keeping multi
 - treating user-confirmed reference images as optional instead of primary ground truth
 - continuing with high uncertainty instead of asking a short clarifying question set
 - using edit repair for identity-critical errors that actually require regeneration
+- preserving the front fascia while flattening or genericizing distinctive fender and side-body geometry
 
 ## Inputs
 
@@ -47,6 +48,8 @@ Optional:
 9. **Series consistency matters.** When generating a pair or set of posters, use a fixed poster template and consistent layout anchors so that repeated elements stay in the same positions across the set.
 10. **For paired posters, do not generate the final posters independently from scratch.** Establish one layout anchor first, then generate the matching companion poster using that layout anchor.
 11. **Series vehicle orientation is locked.** For paired or multi-poster sets, use a front three-quarter view with the vehicle nose pointing toward the viewer's left (canvas left) in every poster, unless the user explicitly requests another direction. Do not mirror individual posters within the same series.
+12. **Every new poster job has two default preference checks.** Before the first image, confirm whether the user has reference images and confirm the desired exterior color (or color policy for a series), unless those two items were already explicitly provided.
+13. **Whole-body geometry matters.** Distinctive front/rear fender volume, wheel-arch form, side-surface planes, rocker treatment, glasshouse and rear-quarter geometry must be treated as identity-critical when the researched vehicle design depends on them.
 
 ## Required workflow
 
@@ -68,29 +71,45 @@ Factors that reduce certainty:
 - the user asks for two related variants together
 - there is a known prior failure mode for this model
 
-### 2) Run the initial Q&A routine when needed
+### 2) Run the initial user-preference checkpoint before the first image
 
 Use `references/intake-questionnaire.md`.
 
-If certainty is **medium** or **low**, or if the user asks for accuracy-sensitive work, ask one grouped intake message before generation.
+For every **new poster request**, before the first image is generated, confirm these two items unless the user already stated them explicitly:
 
-The intake should be short and practical. It should ask only what materially improves fidelity.
+1. **Reference images:** ask whether the user has reference images to upload. If not, confirm that web/image research should be used.
+2. **Exterior color:** ask which color the user wants. For a paired or multi-poster series, ask for the color policy: one shared color, representative color by model/generation, or user-specified colors.
 
-Typical grouped questions:
+These two checks are the default minimum even when vehicle identity itself is high-certainty.
 
-- Do you have reference images you want me to follow? If yes, please upload them.
-- If you do not have images, should I proceed by searching the web for the exact vehicle?
-- If known, what are the exact year / generation / pre-facelift or facelift / trim / market?
-- Is there a must-match design detail such as the headlamps, grille, rear fender, or wheel design?
-- For printed specifications, is there a preferred market or sales version?
+Ask additional questions only when they materially affect vehicle identity or factual correctness, such as:
+
+- market / regional specification basis
+- exact year / generation / facelift state / trim
+- must-match exterior details
+- preferred market for printed specifications
+- special series-wide presentation preferences
+
+#### Preference checkpoint hard-stop rule
+
+If you ask the user **any** clarification or preference question, **end that response after the grouped question set and wait for the user's reply**.
+
+In that same response:
+- do not generate any image
+- do not generate a shape anchor
+- do not continue into poster generation
+- do not silently choose an unanswered color or other requested preference and continue
+
+If the user's original request already explicitly states both reference-image availability and the desired color/color policy, do not ask them again. Continue directly to research unless another material ambiguity remains.
 
 #### Intake handling rules
 
-- Ask **one grouped question set**, not many fragmented questions.
-- If the user provides only partial answers, proceed with those answers and research the rest.
-- If the user provides no references, continue with web/image research instead of stalling.
-- Do not ask unnecessary questions when the request is already unambiguous.
-- When the user explicitly says to just proceed, continue with documented assumptions.
+- Ask **one short grouped question set**, not many fragmented questions.
+- For a multi-poster series, resolve shared preferences once and apply them consistently across the set.
+- If the user says there are no reference images, use web/image research.
+- If the user says the color does not matter, choose a defensible representative color and proceed.
+- If the user says `알아서 진행해줘`, use defensible assumptions and proceed.
+- Do not repeat questions whose answers were already supplied.
 
 Record the outcome in `templates/intake-session.md` internally.
 
@@ -125,7 +144,7 @@ Strict visual grounding is mandatory for:
 
 In strict mode, do not jump directly to poster generation.
 
-### 5) Build proven visual reference sets
+### 5) Build proven multi-angle visual reference sets
 
 Use image search actively unless the user already provided enough exact images.
 
@@ -149,6 +168,20 @@ For every shape-critical **positive reference**, record:
 - accepted / quarantined / rejected status
 - decision reason
 
+#### Multi-angle coverage gate
+
+For strict visual grounding, do not validate vehicle shape from a front three-quarter reference alone.
+
+Build coverage for these views whenever they are available:
+
+- **front three-quarter or front view** — lamps, grille, bumper, hood/fender relationship
+- **side/profile view** — front/rear fender volume, wheel arches, door planes, character lines, rocker, glasshouse
+- **rear three-quarter or rear view** — rear-quarter volume, rear wheel arch, C-pillar, taillamps and bumper
+
+For a vehicle whose design identity strongly depends on side surfacing or pronounced fender volume, the accepted set must include a usable **side/profile** reference and preferably a **rear three-quarter** reference before the shape anchor is considered well-grounded.
+
+A side or rear reference does not replace front-fascia corroboration, and a front reference does not replace side-body geometry coverage.
+
 #### Reference provenance gate
 
 A downloaded image without recoverable provenance must not become the primary shape reference when market-specific fascia differences exist.
@@ -157,11 +190,9 @@ A downloaded image without recoverable provenance must not become the primary sh
 
 “Two references” means two visually corroborating references from at least two **independent sources**, not two crops or thumbnails from the same photo set.
 
-Rear or side-only images do not count as corroboration for front-fascia identity.
-
 #### User-reference priority
 
-When the user supplies or later confirms a real vehicle photo as the correct variant, treat it as the **primary ground-truth reference**. Rebuild the reference set around it and remove conflicting search images before any further anchor generation or repair.
+When the user supplies or later confirms a real vehicle photo as the correct variant, treat it as the **primary ground-truth reference** for the geometry visible in that image. Supplement missing angles through research rather than guessing unseen geometry.
 
 ### 6) For sibling variants, isolate and compare sets
 
@@ -189,13 +220,17 @@ Compare at minimum:
 
 Before generation, compare all references **inside each variant set**.
 
-They must agree on identity-critical features such as:
+They must agree on identity-critical features visible in the relevant views, such as:
 
 - headlamp outer contour
 - indicator separation/integration
 - grille outline
 - badge relationship
 - bumper openings
+- front-fender volume and wheel-arch relation
+- rear-fender / rear-quarter volume
+- side character-line and surface-plane structure
+- glasshouse / C-pillar / rear-quarter-window silhouette
 
 If one image conflicts, quarantine it and verify its market/year. Do not let the image model reconcile conflicting references by blending them.
 
@@ -207,19 +242,39 @@ If the remaining accepted references are too weak, either:
 
 Use `templates/vehicle-research.json` and `templates/shape-critical-notes.md`.
 
-The brief must include concrete geometry such as:
+The brief must describe the car as a three-dimensional body, not only a front fascia.
 
+Record concrete geometry in separate groups:
+
+**Front identity**
 - exact headlamp/indicator relationship
 - grille outline and width
 - bumper and fog-lamp openings
-- hood/fender break lines
-- side character lines and lower-door sculpting
-- rear-fender flare/volume and wheel-arch treatment
-- C-pillar/rear-quarter window silhouette
-- taillamp shape
+- hood-to-front-fender break lines
+
+**Side-body geometry**
+- front-fender shoulder / outward volume
+- front wheel-arch contour and relation to hood/door
+- upper and lower character lines
+- door surface planes, concave/convex transitions and lower-door sculpting
+- rocker / side-skirt geometry
+- mirror mounting / neck treatment when distinctive
+- door-handle form when distinctive
+
+**Rear-quarter geometry**
+- rear-fender / quarter-panel outward volume
+- rear wheel-arch contour
+- C-pillar and rear-quarter-window silhouette
+- transition from rear door into quarter panel and tail
+- taillamp / rear-bumper relation when visible
+
+**Overall proportion**
 - wheel/stance/proportion cues
+- body width impression and shoulder treatment
 
 Write illustrator-style statements. Avoid vague notes like “looks like the early model.”
+
+If official or well-corroborated sources describe pronounced fenders, geometric body planes, or distinctive side sculpting as a design feature, promote those details to **identity-critical hard gates**.
 
 ### 9) Generate a shape anchor separately for each exact variant
 
@@ -252,14 +307,23 @@ The anchor is valid only if all hard gates pass:
 - correct indicator relationship
 - correct grille outline and badge relationship
 - correct bumper opening topology
-- correct major side surfacing
-- correct rear-quarter/rear-fender form when visible
+- correct front-fender shoulder/volume when visible
+- correct front and rear wheel-arch form when visible
+- correct major side-surface planes and character-line structure
+- correct rocker / lower-door treatment when distinctive
+- correct rear-quarter/rear-fender volume when visible
+- correct glasshouse / C-pillar / rear-quarter-window silhouette when distinctive
 - showroom plate exists and shows the short car name
 - no obvious drift toward a sibling generation or market variant
 
 #### Evidence note requirement
 
-For each identity-critical hard gate, record a short pass/fail note by comparing a zoomed front crop with the primary real reference.
+For each identity-critical hard gate, record a short pass/fail note against the best matching real reference angle.
+
+Use:
+- front crop for lamps / grille / bumper
+- side or front-three-quarter crop for front-fender and door-surface geometry
+- side or rear-three-quarter crop for rear-fender / quarter-panel geometry
 
 Do not pass an anchor based only on overall resemblance.
 
@@ -374,7 +438,8 @@ The poster fails if:
 
 - it regresses to the wrong generation/facelift
 - differentiating lamp/grille/bumper features disappear
-- side/rear-fender surfacing becomes generic or too smooth
+- front/rear fender volume becomes flatter than the validated reference
+- side-surface planes, wheel arches, character lines or rocker treatment become generic, overly smooth, or simplified
 - paired variants again become visually almost identical
 - the showroom plate is missing or wrong
 - the posters in a set have visibly different canvas sizes or drifting layout positions for repeated elements
@@ -393,4 +458,6 @@ The skill must explicitly apply the lessons captured from prior failures. The in
 - allow a wrong anchor to pass because the overall silhouette looks similar
 - keep editing a fundamentally wrong front fascia instead of regenerating
 
-Use `tests/regression-test-spec.md` and `tests/fixtures/kalos-korea-t200/` as regression guidance.
+Use `tests/regression-test-spec.md`, `tests/fixtures/kalos-korea-t200/`, and `tests/fixtures/avante-cn8/` as regression guidance.
+
+The Avante CN8 regression case specifically guards against a result that gets the new front fascia broadly right while flattening the front/rear fender volume and geometric side-body surfacing.

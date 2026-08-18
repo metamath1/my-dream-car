@@ -36,11 +36,24 @@ Must-match shape-critical notes:
 Negative constraints:
 {{negative_constraints}}
 
+## Whole-body geometry preservation
+
+The final poster must preserve the validated anchor's three-dimensional body surfacing, not only its front fascia.
+
+- preserve front-fender shoulder and outward volume
+- preserve rear-fender / quarter-panel volume
+- preserve front and rear wheel-arch contours
+- preserve researched door-surface planes and character lines
+- preserve rocker / side-skirt geometry
+- preserve glasshouse, C-pillar and rear-quarter-window silhouette
+- do not smooth, flatten, simplify, or genericize distinctive side-body transitions for aesthetic cleanliness
+
 ## Composition
 
 - tall vertical poster, approximately 9:16
 - hero vehicle centered in the middle/lower-middle area
 - front three-quarter view unless another researched angle is better for identity
+- when fender/side-body geometry is identity-critical, favor a side-biased front three-quarter view that keeps both wheel arches and the rear quarter readable
 - for a paired or multi-poster set, orient the vehicle so its nose points toward the viewer's left (canvas left), and keep that direction identical across the whole set
 - natural perspective without distorted proportions
 - vehicle large enough that the exact model-specific features are obvious

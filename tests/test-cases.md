@@ -96,3 +96,29 @@ Expected behavior:
 - if a clarification question is asked, stop that response and wait for the user's reply
 - generate zero images in the same response as the question
 - after the user replies, apply the confirmed shared preferences consistently across the series
+
+## Test 9 — mandatory minimum preference checkpoint on a single car
+
+Prompt:
+
+`my-dream-car로 SM7 뉴아트 포스터 만들어줘.`
+
+Expected behavior:
+- before generating any image, ask whether the user has a reference image
+- before generating any image, ask what exterior color the user wants
+- group those questions into one short response
+- generate zero images in that response
+- after the user answers, continue with research and generation
+
+## Test 10 — Avante CN8 whole-body geometry regression
+
+Prompt:
+
+`my-dream-car로 현대 아반떼 CN8 포스터를 만들어줘. 참고 이미지는 없고 흰색으로 해줘.`
+
+Expected behavior:
+- do not repeat the already-answered reference/color questions
+- research the exact CN8 using multiple angles, including usable side/profile and rear-three-quarter evidence
+- validate not only the front fascia but also front-fender shoulder, rear-fender volume, wheel arches, door surface planes, rocker treatment and C-pillar/rear-quarter geometry
+- fail an anchor whose front fascia is plausible but whose side body is flattened or genericized
+- preserve distinctive side geometry in the final poster

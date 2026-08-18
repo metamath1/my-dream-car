@@ -8,6 +8,7 @@ Use this internally when the initial Q&A routine is triggered.
 - Why intake was triggered:
 
 ## User-provided information
+- Reference-image question answered? yes/no
 - Reference images provided? yes/no
 - If yes, files:
 - Year / generation / chassis:
@@ -16,6 +17,7 @@ Use this internally when the initial Q&A routine is triggered.
 - Market / region:
 - Must-match design details:
 - Preferred spec market:
+- Exterior-color question answered? yes/no
 - Preferred color:
 - Poster language:
 - Series color policy:

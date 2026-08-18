@@ -40,15 +40,16 @@ Negative constraints — do not drift into these mistakes:
 ## Camera and presentation
 
 - front three-quarter view unless another angle better exposes the identity-critical geometry
+- if side-body geometry or fender volume is identity-critical, use a side-biased front three-quarter angle that shows both front and rear wheel arches and enough door/quarter-panel surface to judge the body planes
 - if this anchor belongs to a paired or multi-poster set, place the vehicle nose toward canvas left so all series anchors share the same orientation
 - realistic natural lens, not an exaggerated wide angle
 - neutral light studio or clean neutral background
 - no giant typography
 - minimal styling effects
 - full car visible and large enough to inspect details clearly
-- emphasize readability of lamps, grille, bumper, wheel arches, side surfacing, and rear quarter
+- emphasize readability of lamps, grille, bumper, front/rear wheel arches, front-fender shoulder, door surface planes, rocker treatment, rear-quarter volume, and C-pillar
 - include a front showroom plate reading `{{showroom_plate_text}}`
 
 ## Rendering goal
 
-Photoreal, factory-correct, restrained, reference-friendly. No concept-car reinterpretation, no aftermarket parts, no incorrect market mixing.
+Photoreal, factory-correct, restrained, reference-friendly. Preserve researched convex/concave transitions and fender volumes exactly. Do not smooth, flatten, simplify, or genericize the side body. No concept-car reinterpretation, no aftermarket parts, no incorrect market mixing.
