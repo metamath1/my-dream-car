@@ -46,7 +46,3 @@ Vehicle fidelity always takes priority over decorative styling.
   <img src="assets/examples/example-gm-daewoo-kalos-v-facelift.png" alt="GM Daewoo Kalos V Facelift poster" width="31%" />
   <img src="assets/examples/example-hyundai-avante-cn8.png" alt="Hyundai Avante CN8 poster" width="31%" />
 </p>
-
-| Volkswagen Golf GTI Mk2 Late | GM Daewoo Kalos V Facelift | Hyundai Avante CN8 |
-|---|---|---|
-| late Mk2 GTI example poster | Korean-market Kalos V facelift example poster | new-generation Avante CN8 example poster |
